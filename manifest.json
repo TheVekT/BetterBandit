@@ -1,0 +1,64 @@
+{
+  "manifest_version": 3,
+  "name": "BetterBandit",
+  "version": "1.0",
+  "description": "Расширение для модификации сайта bandit.camp с различным функционалом для разных страниц.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "permissions": [
+    "storage",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://bandit.camp/*"
+  ],
+  "content_scripts": [
+    {
+        "matches": ["https://bandit.camp/*"],
+        "js": ["content-scripts/hide-balance.js"],
+        "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://bandit.camp/wheel*"],
+      "js": ["content-scripts/wheel.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://bandit.camp/crate-battles*"],
+      "js": ["content-scripts/crate-battles.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://bandit.camp/mines*"],
+      "js": ["content-scripts/mines.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://bandit.camp/beancan-blast*"],
+      "js": ["content-scripts/beancan-blast.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "icons/*",
+        "popup/*",
+        "inject/wheel-bet.js"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

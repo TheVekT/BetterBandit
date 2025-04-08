@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+html{
+    margin: 0px;
+    padding: 0px;
+    user-select: none;
+}
+body{
+    min-width: 300px;
+    min-height: 350px;
+    background-color: #0e110e;
+    margin: 0px;
+    padding: 0px;
+    color: white;
+    font-family: "Nunito", sans-serif;
+    font-weight: bold;
+}
+.logo-container {
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 3px;
+    background-color: #141814;
+    margin: 0px;
+}
+
+.logo-container img {
+    max-width: 130px; /* или укажи нужное значение */
+    height: auto;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 36px;  /* 60% of 60px */
+    height: 20px; /* 60% of 34px */
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    display: none;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #646360;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 20px; /* Match new height */
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;  /* 60% of 26px */
+    width: 16px;   /* 60% of 26px */
+    left: 2px;
+    bottom: 2px;
+    background-color: #bdbdbd;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    background-color: #707f4f;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #707f4f;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(16px); /* 60% of 26px */
+    -ms-transform: translateX(16px);
+    transform: translateX(16px);
+    background-color: #aade4e;
+  }
+
+
+  .hide-bal {
+    display: flex;
+    justify-content: space-between;  
+    align-items: center; 
+    margin: 7px;
+    padding: 5px;
+    background-color: #55544f;
+}
+  .hide-bal-text{
+    font-size: 13px;
+    color: #e9f3d7;
+    margin: 0px;
+  }
+  
+  footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #333;
+    color: white;
+    padding-left: 5px;
+    text-align: left;
+    position: absolute;
+    height: 25px;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    left: 0;
+    bottom: 0;
+}
+.created-by{
+    font-size: 12px;
+    color: rgb(189, 189, 189);
+    padding-left: 8px;
+    margin: 0px;
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;  /* Элементы в колонку */
+    height: 100%;  /* Устанавливает минимальную высоту для всего контейнера */
+}
+
+.content {
+    flex-grow: 1;  /* Контент будет растягиваться, чтобы занять оставшееся пространство */
+    height: 100%;
+}
