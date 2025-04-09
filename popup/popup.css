@@ -83,7 +83,7 @@ body{
   }
 
 
-  .hide-bal {
+  .switch-div {
     display: flex;
     justify-content: space-between;  
     align-items: center; 
@@ -128,4 +128,15 @@ body{
 .content {
     flex-grow: 1;  /* Контент будет растягиваться, чтобы занять оставшееся пространство */
     height: 100%;
+}
+#betterAutoBet input:checked + .slider {
+  background-color: #5d727f;
+}
+#betterAutoBet input:checked + .slider:before {
+  background-color: #65addf;
+}
+.BetterAutoBet-text{
+  color: #d8eaf6;
+  font-size: 13px;
+  margin: 0px;
 }

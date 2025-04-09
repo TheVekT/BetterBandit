@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+div#btAb_wheel_injected{
+  flex: 0 0 100% !important;
+  width: 100%;
+  max-width: 100%;
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+  max-height: 40px;
+  padding: 4px;
+  margin-bottom: 4px;
+}
+.content-345sddd{background-color: #080a08;
+  max-height: 40px;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 36px;  /* 60% of 60px */
+    height: 20px; /* 60% of 34px */
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    display: none;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #646360;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 20px; /* Match new height */
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;  /* 60% of 26px */
+    width: 16px;   /* 60% of 26px */
+    left: 2px;
+    bottom: 2px;
+    background-color: #bdbdbd;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    background-color: #707f4f;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #707f4f;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(16px); /* 60% of 26px */
+    -ms-transform: translateX(16px);
+    transform: translateX(16px);
+    background-color: #aade4e;
+  }
+
+
+  .switch-div {
+    display: flex;
+    justify-content: space-between;  
+    align-items: center; 
+    margin: 7px;
+    padding: 5px;
+    background-color: #55544f;
+}
+
+.anton-tac-div{
+    background-color: #080a08;
+    display: flex;
+    justify-content: space-between;  
+    align-items: center; 
+    margin: 0px;
+    padding: 0px;
+}
+.text-tac23{
+    margin-bottom: 0px !important;
+    background-color: #080a08;
+    background: transparent;
+    font-family: "Nunito", sans-serif;
+    font-weight: bold;
+    margin: 0px;
+    font-size: 13px;
+    color: #b5b6b0;
+}

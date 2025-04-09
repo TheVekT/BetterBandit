@@ -26,13 +26,19 @@
   ],
   "content_scripts": [
     {
-        "matches": ["https://bandit.camp/*"],
-        "js": ["content-scripts/hide-balance.js"],
-        "run_at": "document_idle"
+      "matches": ["https://bandit.camp/*"],
+      "js": [
+        "content-scripts/utils/InjectionManager.js",
+        "content-scripts/hide-balance.js"
+      ],
+      "run_at": "document_idle"
     },
     {
       "matches": ["https://bandit.camp/wheel*"],
-      "js": ["content-scripts/wheel.js"],
+      "js": [
+        "content-scripts/utils/InjectionManager.js",
+        "content-scripts/wheel.js"
+      ],
       "run_at": "document_idle"
     },
     {
@@ -56,7 +62,9 @@
       "resources": [
         "icons/*",
         "popup/*",
-        "inject/wheel-bet.js"
+        "inject/wheel-bet.js",
+        "content-resources/wheel/btAb_wheel.html",
+        "content-resources/wheel/btAb_wheel.css"
       ],
       "matches": ["<all_urls>"]
     }

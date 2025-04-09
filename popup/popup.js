@@ -22,13 +22,18 @@
     });
   });
 
-  document.getElementById("testBet").addEventListener("click", () => {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        chrome.scripting.executeScript({
-            target: { tabId: tabs[0].id },
-            func: () => {
-                window.postMessage({ type: "CALL_WHEEL_BET" }, "*");
-            }
-        });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const checkbox = document.getElementById("toggler");
+  
+    // Читаем значение betterAutobet из хранилища и устанавливаем состояние чекбокса
+    chrome.storage.sync.get("betterAutobet", (data) => {
+      checkbox.checked = !!data.betterAutobet;
     });
-});
+  
+    // При изменении чекбокса сохраняем новое значение
+    checkbox.addEventListener("change", () => {
+      const enabled = checkbox.checked;
+      chrome.storage.sync.set({ betterAutobet: enabled });
+    });
+  });

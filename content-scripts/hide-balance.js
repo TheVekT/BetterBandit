@@ -1,13 +1,15 @@
 let originalWalletText = null;
 let intervalId = null;
+let observerIntervalId = null;
+let shouldHideBalance = false;
 
-// Случайный символ: цифра или один из символов
+// Случайный символ
 function getRandomChar() {
   const chars = '0123456789!@#$%^&*()_+=-[]{}|;:,.<>?/\\';
   return chars[Math.floor(Math.random() * chars.length)];
 }
 
-// Форматированный мусорный текст: "000.00", но с символами
+// Генерация фейкового текста
 function getObfuscatedText() {
   return (
     getRandomChar() +
@@ -30,18 +32,17 @@ function startBalanceObfuscation() {
     originalWalletText = targetWalletSpan.textContent;
   }
 
+  if (intervalId) return;
+
   intervalId = setInterval(() => {
     targetWalletSpan.textContent = getObfuscatedText();
   }, 300);
-
-  window.__balanceObfuscationInterval = intervalId;
 }
 
 function stopBalanceObfuscation() {
-  if (intervalId || window.__balanceObfuscationInterval) {
-    clearInterval(intervalId || window.__balanceObfuscationInterval);
+  if (intervalId) {
+    clearInterval(intervalId);
     intervalId = null;
-    window.__balanceObfuscationInterval = null;
   }
 
   const targetWalletSpan = document.querySelector(
@@ -53,18 +54,35 @@ function stopBalanceObfuscation() {
   }
 }
 
-// При загрузке страницы
+// 🔁 Следим за появлением элемента и активируем фичу
+function watchForBalanceElement() {
+  if (observerIntervalId) return;
+
+  observerIntervalId = setInterval(() => {
+    const target = document.querySelector('.wallet-pill .scrap .lh-1.font-weight-bold');
+    if (target && shouldHideBalance) {
+      startBalanceObfuscation();
+      clearInterval(observerIntervalId);
+      observerIntervalId = null;
+    }
+  }, 500);
+}
+
+// При старте получаем настройку
 chrome.storage.sync.get("hideBalance", (data) => {
-  if (data.hideBalance) {
-    startBalanceObfuscation();
+  shouldHideBalance = !!data.hideBalance;
+  if (shouldHideBalance) {
+    watchForBalanceElement();
   }
 });
 
 // От popup.js
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "toggleBalanceHiding") {
-    if (request.hide) {
-      startBalanceObfuscation();
+    shouldHideBalance = request.hide;
+
+    if (shouldHideBalance) {
+      watchForBalanceElement();
     } else {
       stopBalanceObfuscation();
     }
